@@ -12,17 +12,17 @@ pantalla = pygame.display.set_mode((800, 600))
 
 # Titulo e Icono
 pygame.display.set_caption("Invasión Espacial")
-icono = pygame.image.load("ovni.ico")
+icono = pygame.image.load("Image/ovni.png")
 pygame.display.set_icon(icono)
-fondo = pygame.image.load("Fondo.jpg")
+fondo = pygame.image.load("Image/Fondo.jpg")
 
 # Agregar musica
-mixer.music.load('MusicaFondo.mp3')
+mixer.music.load('Image/MusicaFondo.mp3')
 mixer.music.set_volume(0.3)
 mixer.music.play(-1)
 
 # Variables Jugador
-img_jugador = pygame.image.load("Cohete.png")
+img_jugador = pygame.image.load("Image/Cohete.png")
 jugador_x = 368
 jugador_y = 500
 jugador_x_cambio = 0
@@ -37,7 +37,7 @@ alien_y_cambio = []
 cantidad_alien = 6
 
 for e in range(cantidad_alien):
-    img_alien.append(pygame.image.load("Alien.png"))
+    img_alien.append(pygame.image.load("Image/Alien.png"))
     alien_x.append(random.randint(0, 736))
     alien_y.append(random.randint(50, 200))
     alien_x_cambio.append(0.5)
@@ -52,7 +52,7 @@ meteorito_y_cambio = []
 cantidad_meteorito = 3
 
 for m in range(cantidad_meteorito):
-    img_meteorito.append(pygame.image.load("asteroide.png"))
+    img_meteorito.append(pygame.image.load("Image/asteroide.png"))
     meteorito_x.append(random.randint(0, 736))
     meteorito_y.append(random.randint(58, 236))
     meteorito_x_cambio.append(0.8)
@@ -60,7 +60,7 @@ for m in range(cantidad_meteorito):
 
 # Variables Bala
 balas = []
-img_bala = pygame.image.load("bala.png")
+img_bala = pygame.image.load("Image/bala.png")
 bala_x = 0
 bala_y = 500
 bala_x_cambio = 0
@@ -71,7 +71,7 @@ bala_visible = False
 
 col = 0
 cont = 0
-img1_explosion = pygame.image.load('explosion1.png')
+img1_explosion = pygame.image.load('Image/explosion1.png')
 explosion_x = 0
 explosion_y = 0
 
@@ -86,8 +86,8 @@ def fuente_bytes(fuente):
 
 #Fuente
 
-fuente_como_bytes = fuente_bytes("Honk-Regular.ttf")
-fuente = pygame.font.Font('Honk-Regular.ttf', 32)
+fuente_como_bytes = fuente_bytes("Font/Honk-Regular.ttf")
+fuente = pygame.font.Font('Font/Honk-Regular.ttf', 32)
 text_x = 10
 text_y = 10
 
@@ -164,7 +164,7 @@ while se_ejecuta and juego_activo:
             if evento.key == pygame.K_RIGHT:
                 jugador_x_cambio = 1
             if evento.key == pygame.K_SPACE:
-                sonido_bala = mixer.Sound('disparo.mp3')
+                sonido_bala = mixer.Sound('Sound/disparo.mp3')
                 sonido_bala.set_volume(0.3)
                 sonido_bala.play()
                 nueva_bala = {'x': jugador_x, 'y': jugador_y, 'velocidad': -3}
@@ -217,7 +217,7 @@ while se_ejecuta and juego_activo:
         for bala in balas:
             colision_bala_alien = hay_colision(alien_x[e], alien_y[e], bala["x"], bala["y"])
             if colision_bala_alien:
-                sonido_colision = mixer.Sound("Golpe.mp3")
+                sonido_colision = mixer.Sound("Sound/Golpe.mp3")
                 sonido_colision.play()
                 balas.remove(bala)
                 puntuacion += 1
@@ -244,7 +244,7 @@ while se_ejecuta and juego_activo:
         for bala in balas:
             colision_bala_meteorito = hay_colision(meteorito_x[m], meteorito_y[m], bala["x"], bala["y"])
             if colision_bala_meteorito:
-                sonido_colision = mixer.Sound("Golpe.mp3")
+                sonido_colision = mixer.Sound("Sound/Golpe.mp3")
                 sonido_colision.play()
                 balas.remove(bala)
                 puntuacion += 2
